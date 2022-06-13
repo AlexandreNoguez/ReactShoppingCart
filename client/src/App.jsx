@@ -1,7 +1,9 @@
+import MainRoutes from './routes'
+
 function App() {
     return (
         <div className="App">
-            <h1>teste</h1>
+            <MainRoutes />
         </div>
     )
 }
