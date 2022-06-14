@@ -1,15 +1,16 @@
-import React from 'react'
-import LayoutBase from '../../shared/Layout/LayoutBase'
-import { Box } from '@mui/material'
-
-// import { Container } from './styles';
+import React from 'react';
+import { Box, Container } from '@mui/material';
+import Header from '../../shared/Components/Header';
+import Footer from '../../shared/Components/Footer';
 
 function Profile() {
-    return (
-        <LayoutBase>
-            <Box></Box>
-        </LayoutBase>
-    )
+  return (
+    <Container maxWidth="md">
+      <Header />
+      <Box sx={{ height: '70vh' }}>Perfil</Box>
+      <Footer />
+    </Container>
+  );
 }
 
-export default Profile
+export default Profile;

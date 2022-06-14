@@ -1,22 +1,22 @@
-import { Box, Typography } from '@mui/material'
-import React from 'react'
+import { Box, Container, Typography } from '@mui/material';
 
 function Footer() {
-    return (
-        <Box sx={{ display: 'flex' }}>
-            <Typography
-                color="primary"
-                sx={{
-                    height: '5rem',
-                    margin: 'auto',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                }}
-            >
-                Made by Alexandre Noguez
-            </Typography>
-        </Box>
-    )
+  return (
+    <Container maxWidth="md">
+      <Typography
+        color="primary"
+        sx={{
+          display: 'flex',
+          height: '5rem',
+          margin: 'auto',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        Made by Alexandre Noguez
+      </Typography>
+    </Container>
+  );
 }
 
-export default Footer
+export default Footer;
