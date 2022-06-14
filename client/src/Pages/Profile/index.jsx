@@ -5,11 +5,13 @@ import Footer from '../../shared/Components/Footer';
 
 function Profile() {
   return (
-    <Container maxWidth="md">
+    <Box>
       <Header />
-      <Box sx={{ height: '70vh' }}>Perfil</Box>
+      <Container maxWidth="md">
+        <Box sx={{ height: '70vh' }}>Perfil</Box>
+      </Container>
       <Footer />
-    </Container>
+    </Box>
   );
 }
 

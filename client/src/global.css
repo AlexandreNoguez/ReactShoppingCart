@@ -2,8 +2,8 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+ul, li, button{
   text-decoration: none;
-  background-color: #f3f3f3;
   list-style: none;
-
 }

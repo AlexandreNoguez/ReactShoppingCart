@@ -2,7 +2,6 @@ import { Box, Container } from '@mui/material';
 import React from 'react';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
-// import MainRoutes from '../../../routes';
 
 function LayoutBase() {
   return (

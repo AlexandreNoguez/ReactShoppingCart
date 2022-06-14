@@ -6,11 +6,16 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import { useApi } from '../../../Hooks/useApi';
 
 export default function MediaCard() {
   const { data } = useApi('catalog');
+  const RealBrl = new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
 
   //   const click = () => {
   //     console.log(data);
@@ -18,7 +23,14 @@ export default function MediaCard() {
   return (
     <Box display="flex" gap={1} flexWrap="wrap" justifyContent="center">
       {data.map((item) => (
-        <Card key={item._id} sx={{ maxWidth: 200 }}>
+        <Card
+          key={item._id}
+          sx={{
+            maxWidth: 250,
+            textAlign: 'center',
+            alignItems: 'center',
+          }}
+        >
           <CardMedia
             component="img"
             height="140"
@@ -32,10 +44,21 @@ export default function MediaCard() {
             <Typography variant="body2" color="text.secondary">
               {item.description}
             </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {RealBrl.format(item.value)}
+            </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Adicionar ao carrinho</Button>
-            <Button size="small">Detalhes</Button>
+            <Button
+              variant="contained"
+              startIcon={<AddCircleIcon />}
+              size="small"
+            >
+              Carrinho
+            </Button>
+            <Button variant="outlined" size="small">
+              Detalhes
+            </Button>
           </CardActions>
         </Card>
       ))}
