@@ -20,6 +20,9 @@ export const LightTheme = createTheme({
       default: '#333333',
     },
   },
+  button: {
+    background: '#720000',
+  },
   typography: {
     allVariants: {
       color: '#720000',
