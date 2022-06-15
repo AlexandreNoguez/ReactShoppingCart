@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, styled } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-
 import { useState } from 'react';
 import logoImg from '../../assets/img/logo.png';
 import Home from '../../../Pages/Home';
+import Cart from '../Cart';
 
 const LogoStyles = styled(Box)({
   width: '5rem',
@@ -22,7 +22,8 @@ const NavListItem = styled(Box)({
 });
 
 function Header() {
-  const [handleToggleCart, setHandleToggleCart] = useState(true);
+  const [handleToggleCart, setHandleToggleCart] = useState(false);
+
   return (
     <Box
       width="99%"
@@ -53,13 +54,14 @@ function Header() {
           <NavListItem>Perfil</NavListItem>
         </Link>
         <Button
-          onClick={setHandleToggleCart}
+          onClick={() => setHandleToggleCart(true)}
           variant="contained"
           endIcon={<ShoppingCartIcon />}
         >
           Carrinho
         </Button>
       </Box>
+      {handleToggleCart && <Cart setHandleToggleCart={setHandleToggleCart} />}
     </Box>
   );
 }

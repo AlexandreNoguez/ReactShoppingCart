@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { LightTheme } from '../../theme';
 
 import { useApi } from '../../../Hooks/useApi';
 
@@ -41,7 +42,7 @@ export default function MediaCard() {
             <Typography gutterBottom variant="h5" component="div">
               {item.title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color={LightTheme.palette.primary.dark}>
               {item.description}
             </Typography>
             <Typography variant="body2" color="text.secondary">
@@ -50,13 +51,18 @@ export default function MediaCard() {
           </CardContent>
           <CardActions>
             <Button
+              sx={{ position: 'static' }}
               variant="contained"
               startIcon={<AddCircleIcon />}
               size="small"
             >
               Carrinho
             </Button>
-            <Button variant="outlined" size="small">
+            <Button
+              sx={{ position: 'inherit' }}
+              variant="outlined"
+              size="small"
+            >
               Detalhes
             </Button>
           </CardActions>

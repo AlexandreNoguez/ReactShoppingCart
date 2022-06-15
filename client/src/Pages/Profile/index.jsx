@@ -7,7 +7,7 @@ function Profile() {
   return (
     <Box>
       <Header />
-      <Container maxWidth="md">
+      <Container maxWidth="lg">
         <Box sx={{ height: '70vh' }}>Perfil</Box>
       </Container>
       <Footer />
