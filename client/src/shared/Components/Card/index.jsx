@@ -7,20 +7,21 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { LightTheme } from '../../theme';
 
+import { useContext } from 'react';
+import { CartContext } from '../../Context/CartContext';
+import { LightTheme } from '../../theme';
 import { useApi } from '../../../Hooks/useApi';
 
 export default function MediaCard() {
+  const { handleToAddToCart } = useContext(CartContext);
   const { data } = useApi('catalog');
+
   const RealBrl = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   });
 
-  //   const click = () => {
-  //     console.log(data);
-  //   };
   return (
     <Box display="flex" gap={1} flexWrap="wrap" justifyContent="center">
       {data.map((item) => (
@@ -42,7 +43,10 @@ export default function MediaCard() {
             <Typography gutterBottom variant="h5" component="div">
               {item.title}
             </Typography>
-            <Typography variant="body2" color={LightTheme.palette.primary.dark}>
+            <Typography
+              variant="body2"
+              color={LightTheme.palette.primary.light}
+            >
               {item.description}
             </Typography>
             <Typography variant="body2" color="text.secondary">
@@ -51,18 +55,14 @@ export default function MediaCard() {
           </CardContent>
           <CardActions>
             <Button
-              sx={{ position: 'static' }}
+              onClick={() => handleToAddToCart(data)}
               variant="contained"
               startIcon={<AddCircleIcon />}
               size="small"
             >
               Carrinho
             </Button>
-            <Button
-              sx={{ position: 'inherit' }}
-              variant="outlined"
-              size="small"
-            >
+            <Button variant="outlined" size="small">
               Detalhes
             </Button>
           </CardActions>

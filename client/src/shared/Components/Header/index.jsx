@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Button, styled } from '@mui/material';
+import { Box, Button, styled, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useState } from 'react';
+import { useContext } from 'react';
 import logoImg from '../../assets/img/logo.png';
 import Home from '../../../Pages/Home';
-import Cart from '../Cart';
+import CartContextProvider, { CartContext } from '../../Context/CartContext';
+import { LightTheme } from '../../theme';
 
 const LogoStyles = styled(Box)({
   width: '5rem',
@@ -21,9 +22,8 @@ const NavListItem = styled(Box)({
   color: 'black',
 });
 
-function Header() {
-  const [handleToggleCart, setHandleToggleCart] = useState(false);
-
+function Header({ setHandleToggleCart }) {
+  const { cart } = useContext(CartContext);
   return (
     <Box
       width="99%"
@@ -53,15 +53,19 @@ function Header() {
         <Link to="/perfil">
           <NavListItem>Perfil</NavListItem>
         </Link>
+
         <Button
           onClick={() => setHandleToggleCart(true)}
           variant="contained"
           endIcon={<ShoppingCartIcon />}
         >
-          Carrinho
+          {cart.length > 0 && (
+            <Typography color={LightTheme.palette.primary.contrastText}>
+              {cart.length}
+            </Typography>
+          )}
         </Button>
       </Box>
-      {handleToggleCart && <Cart setHandleToggleCart={setHandleToggleCart} />}
     </Box>
   );
 }
