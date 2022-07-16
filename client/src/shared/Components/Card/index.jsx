@@ -15,16 +15,15 @@ import { useApi } from '../../../Hooks/useApi';
 
 export default function MediaCard() {
   const { handleToAddToCart } = useContext(CartContext);
-  const { data } = useApi('catalog');
-
+  const { data } = useApi('catalog')
+  console.log(data.map((item) => item.title))
   const RealBrl = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   });
-
   return (
     <Box display="flex" gap={1} flexWrap="wrap" justifyContent="center">
-      {data.map((item) => (
+      {data?.map((item) => (
         <Card
           key={item._id}
           sx={{
@@ -60,6 +59,7 @@ export default function MediaCard() {
               startIcon={<AddCircleIcon />}
               size="small"
             >
+
               Carrinho
             </Button>
             <Button variant="outlined" size="small">
@@ -67,7 +67,8 @@ export default function MediaCard() {
             </Button>
           </CardActions>
         </Card>
-      ))}
-    </Box>
+      ))
+      }
+    </Box >
   );
 }

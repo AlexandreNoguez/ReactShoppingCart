@@ -5,6 +5,7 @@ function Footer() {
     <Container maxWidth="md">
       <Typography
         color="primary"
+        bgcolor="#e7e7e7"
         sx={{
           display: 'flex',
           height: '5rem',

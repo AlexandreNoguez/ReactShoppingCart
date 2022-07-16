@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Button, styled, Typography } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Box, Button, styled, Typography } from '@mui/material';
 import { useContext } from 'react';
 import logoImg from '../../assets/img/logo.png';
 import Home from '../../../Pages/Home';
-import CartContextProvider, { CartContext } from '../../Context/CartContext';
+import { CartContext } from '../../Context/CartContext';
 import { LightTheme } from '../../theme';
 
 const LogoStyles = styled(Box)({
@@ -23,12 +23,10 @@ const NavListItem = styled(Box)({
 });
 
 function Header({ setHandleToggleCart }) {
-  const { cart } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
   return (
     <Box
-      width="99%"
       sx={{
-        margin: '-10px',
         display: 'flex',
         padding: '1rem',
         backgroundColor: '#e7e7e7',
@@ -59,9 +57,9 @@ function Header({ setHandleToggleCart }) {
           variant="contained"
           endIcon={<ShoppingCartIcon />}
         >
-          {cart.length > 0 && (
+          {addToCart.length > 0 && (
             <Typography color={LightTheme.palette.primary.contrastText}>
-              {cart.length}
+              {addToCart.length}
             </Typography>
           )}
         </Button>
