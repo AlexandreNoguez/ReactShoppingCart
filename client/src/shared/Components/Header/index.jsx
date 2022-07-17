@@ -7,6 +7,8 @@ import logoImg from '../../assets/img/logo.png';
 import Home from '../../../Pages/Home';
 import { CartContext } from '../../Context/CartContext';
 import { LightTheme } from '../../theme';
+import Cart from '../Cart';
+import SearchInput from '../SearchInput';
 
 const LogoStyles = styled(Box)({
   width: '5rem',
@@ -22,8 +24,8 @@ const NavListItem = styled(Box)({
   color: 'black',
 });
 
-function Header({ setHandleToggleCart }) {
-  const { addToCart } = useContext(CartContext);
+function Header() {
+  const { addToCart, setHandleToggleCart } = useContext(CartContext);
   return (
     <Box
       sx={{
@@ -39,30 +41,37 @@ function Header({ setHandleToggleCart }) {
           height: '5rem',
           width: '90%',
           alignItems: 'center',
-          justifyContent: 'flex-end',
+          justifyContent: 'space-between',
           padding: '.5rem',
           backgroundColor: '#e7e7e7',
           textDecoration: 'none',
         }}
       >
-        <Link to="/" element={<Home />}>
-          <NavListItem>Início</NavListItem>
-        </Link>
-        <Link to="/perfil">
-          <NavListItem>Perfil</NavListItem>
-        </Link>
+        <Box display="flex" justifySelf="flex-end">
+          <SearchInput />
+        </Box>
+        <Box display="flex" >
+          <Link to="/" element={<Home />}>
+            <NavListItem>Início</NavListItem>
+          </Link>
+          <Link to="/perfil">
+            <NavListItem>Perfil</NavListItem>
+          </Link>
 
-        <Button
-          onClick={() => setHandleToggleCart(true)}
-          variant="contained"
-          endIcon={<ShoppingCartIcon />}
-        >
-          {addToCart.length > 0 && (
-            <Typography color={LightTheme.palette.primary.contrastText}>
-              {addToCart.length}
-            </Typography>
-          )}
-        </Button>
+          <Button
+            onClick={() => setHandleToggleCart(true)}
+            variant="contained"
+            endIcon={<ShoppingCartIcon />}
+          >
+            <Cart>
+              {addToCart.length > 0 && (
+                <Typography color={LightTheme.palette.primary.contrastText}>
+                  {addToCart.length}
+                </Typography>
+              )}
+            </Cart>
+          </Button>
+        </Box>
       </Box>
     </Box>
   );

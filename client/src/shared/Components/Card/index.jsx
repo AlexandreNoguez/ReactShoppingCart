@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { CartContext } from '../../Context/CartContext';
 import { LightTheme } from '../../theme';
 import { useApi } from '../../../Hooks/useApi';
@@ -16,14 +17,18 @@ import { useApi } from '../../../Hooks/useApi';
 export default function MediaCard() {
   const { handleToAddToCart } = useContext(CartContext);
   const { data } = useApi('catalog')
-  console.log(data.map((item) => item.title))
+
+  // console.log(data?.filter((product) => product.title === title).map((item) => item.title))
+
   const RealBrl = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   });
+
   return (
     <Box display="flex" gap={1} flexWrap="wrap" justifyContent="center">
       {data?.map((item) => (
+
         <Card
           key={item._id}
           sx={{
@@ -54,7 +59,7 @@ export default function MediaCard() {
           </CardContent>
           <CardActions>
             <Button
-              onClick={() => handleToAddToCart(data)}
+              onClick={() => handleToAddToCart(data._id)}
               variant="contained"
               startIcon={<AddCircleIcon />}
               size="small"
@@ -63,7 +68,9 @@ export default function MediaCard() {
               Carrinho
             </Button>
             <Button variant="outlined" size="small">
-              Detalhes
+              <Link to={`/catalog/${item.title}`}>
+                Detalhes
+              </Link>
             </Button>
           </CardActions>
         </Card>

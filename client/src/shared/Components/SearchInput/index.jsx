@@ -59,12 +59,23 @@
 //     </Box>
 //   );
 // }
-import React from 'react';
-
-// import { Container } from './styles';
+import React, { useContext } from 'react';
+import { Box, TextField } from '@mui/material'
+import { CartContext } from '../../Context/CartContext';
 
 function SearchInput() {
-  return <div />;
+  const { setHandleFilterInstrument } = useContext(CartContext)
+  return (
+    <Box>
+      <TextField
+        sx={{ alignItems: 'center', justifyContent: 'center' }}
+        onChange={(e) => setHandleFilterInstrument(e.target.value)}
+        id="outlined-basic"
+        label="Buscar"
+        variant="outlined"
+      />
+    </Box>
+  )
 }
 
 export default SearchInput;

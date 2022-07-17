@@ -9,6 +9,9 @@ function CartContextProvider({ children }) {
   const { data } = useApi('catalog');
   const [filter, setFilter] = useState([]);
   const [addToCart, setAddToCart] = useState([]);
+  const [handleFilterInstrument, setHandleFilterInstrument] = useState('');
+  const [handleToggleCart, setHandleToggleCart] = useState(false)
+  // console.log(handleFilterInstrument);
 
   const handleToAddToCart = (product) => {
     setAddToCart((prev) => {
@@ -33,6 +36,10 @@ function CartContextProvider({ children }) {
         setFilter,
         addToCart,
         setAddToCart,
+        handleFilterInstrument,
+        setHandleFilterInstrument,
+        handleToggleCart,
+        setHandleToggleCart,
         handleToAddToCart,
       }}
     >
