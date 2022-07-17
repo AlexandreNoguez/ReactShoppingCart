@@ -25,7 +25,7 @@ const NavListItem = styled(Box)({
 });
 
 function Header() {
-  const { addToCart, setHandleToggleCart } = useContext(CartContext);
+  const { cart, setHandleToggleCart } = useContext(CartContext);
   return (
     <Box
       sx={{
@@ -64,9 +64,9 @@ function Header() {
             endIcon={<ShoppingCartIcon />}
           >
             <Cart>
-              {addToCart.length > 0 && (
+              {cart.length > 0 && (
                 <Typography color={LightTheme.palette.primary.contrastText}>
-                  {addToCart.length}
+                  {cart.length}
                 </Typography>
               )}
             </Cart>

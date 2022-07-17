@@ -9,7 +9,6 @@ export function useApi(url) {
   const [data, setData] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     api
       .get(url)

@@ -1,46 +1,66 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import { createContext, useState } from 'react';
-import { useApi } from '../../../Hooks/useApi';
 
 export const CartContext = createContext();
 
 function CartContextProvider({ children }) {
-  const { data } = useApi('catalog');
-  const [filter, setFilter] = useState([]);
-  const [addToCart, setAddToCart] = useState([]);
+  // const [filter, setFilter] = useState([]);
+  const [cart, setCart] = useState([]);
   const [handleFilterInstrument, setHandleFilterInstrument] = useState('');
   const [handleToggleCart, setHandleToggleCart] = useState(false)
   // console.log(handleFilterInstrument);
 
-  const handleToAddToCart = (product) => {
-    setAddToCart((prev) => {
-      const findProductInCart = prev.find((item) => item._id === product._id);
-      // console.log('findProductInCart', findProductInCart);
+  const handleToAddToCart = (_id) => {
+    const newCart = [...cart];
 
-      if (findProductInCart) {
-        return prev.map((item) =>
-          item._id === product._id ? { ...item, amount: item.amount + 1 } : item
-        );
-      }
-      // console.log('data', data)
-      return [...prev, { ...product, amount: 1 }];
-    });
+    const newProduct = newCart.find((product) => product.id === _id);
+
+    if (!newProduct) {
+      newCart.push({ _id, amount: 1 })
+    } else {
+      newProduct.amount = newProduct + 1;
+    }
+
+    setCart(newCart)
+
+    console.log(newCart)
   };
+
+  const handleRemoveFromCart = (_id) => {
+
+    const newCart = [...cart];
+
+    const newProduct = newCart.find((product) => product._id === _id);
+
+    if (newProduct && newProduct.amount > 1) {
+      newProduct.amount -= 1
+      setCart(newCart)
+    } else {
+      const arrayFiltered = newCart.filter(product => product._id !== _id);
+      setCart(arrayFiltered)
+    }
+
+  }
+
+  const clearCart = () => {
+    setCart([])
+  }
 
   return (
     <CartContext.Provider
       value={{
-        data,
-        filter,
-        setFilter,
-        addToCart,
-        setAddToCart,
+        // filter,
+        // setFilter,
+        cart,
+        setCart,
         handleFilterInstrument,
         setHandleFilterInstrument,
         handleToggleCart,
         setHandleToggleCart,
         handleToAddToCart,
+        handleRemoveFromCart,
+        clearCart,
       }}
     >
       {children}

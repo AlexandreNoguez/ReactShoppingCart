@@ -75,7 +75,8 @@ exports.listAllInstruments = async (req, res) => {
 
 exports.listOneInstrumentById = async (req, res) => {
     try {
-        const instrument = await Instruments.findOne()
+        const instrumentId = req.params.id
+        const instrument = await Instruments.findOne({_id: instrumentId})
         return res.status(200).send(instrument)
     } catch (err) {
         return res.status(400).send({ error: 'Failed listing by id' })

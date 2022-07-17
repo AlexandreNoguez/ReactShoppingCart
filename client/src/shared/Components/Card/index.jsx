@@ -16,9 +16,10 @@ import { useApi } from '../../../Hooks/useApi';
 
 export default function MediaCard() {
   const { handleToAddToCart } = useContext(CartContext);
-  const { data } = useApi('catalog')
+  const { data, error } = useApi('catalog')
 
   // console.log(data?.filter((product) => product.title === title).map((item) => item.title))
+  console.log("data._id", data.title, error)
 
   const RealBrl = new Intl.NumberFormat('pt-BR', {
     style: 'currency',
